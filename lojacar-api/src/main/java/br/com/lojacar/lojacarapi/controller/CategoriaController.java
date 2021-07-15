@@ -11,30 +11,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.lojacar.lojacarapi.model.Produto;
-import br.com.lojacar.lojacarapi.repository.ProdutoRepository;
+import br.com.lojacar.lojacarapi.model.Categoria;
+import br.com.lojacar.lojacarapi.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("/produto")
-public class ProdutoController {
+@RequestMapping("/categoria")
+public class CategoriaController {
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public List<Produto> getProduto() {
-		return produtoRepository.findAll();
+	public List<Categoria> getCategorias() {
+		return categoriaRepository.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Produto adicionar(@RequestBody Produto produto){
-		return produtoRepository.save(produto);
+	public Categoria adicionar(@RequestBody Categoria categoria){
+		return categoriaRepository.save(categoria);
 	}
 	
 //	@DeleteMapping
 //	@ResponseStatus(HttpStatus.CREATED)
-//	public Produto remover(@RequestBody Produto produto){
-//		return produtoRepository.delete();
+//	public List<Categoria> delCategorias(@RequestBody Categoria categoria){
+//		return categoriaRepository.delete(categoria);
 //	}
 }
