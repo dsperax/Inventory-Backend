@@ -14,33 +14,45 @@ import br.com.lojacar.util.JPAUtil;
 public class TesteCadastro {
 	
 	public static void main(String[] args) {
-		CadastrarProduto();
+		inicializacaoEstoque();
 		
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		
-		Produto p = produtoDao.buscarPorId(1l);
-		System.out.println(p.getPreco());
-		Produto p2 = produtoDao.buscarPorId(2l);
-		System.out.println(p2.getPreco());
+//		Produto p = produtoDao.buscarPorId(1l);
+//		System.out.println(p.getPreco());
+//		Produto p2 = produtoDao.buscarPorId(2l);
+//		System.out.println(p2.getPreco());
 		
 		List<Produto> todos = produtoDao.buscarTodos();
-		todos.forEach(ps -> System.out.println(ps.getNome()));
+		todos.forEach(ps -> System.out.println(ps.getDescricao()));
 		
-		List<Produto> todosComNome = produtoDao.buscarPorNome("Samsung A71");
-		todosComNome.forEach(ps -> System.out.println(ps.getNome()));
+		List<Produto> todosComNome = produtoDao.buscarPorNome("FAROL GOL D");
+		todosComNome.forEach(ps -> System.out.println("Produto: " + ps.getDescricao()));
+	
+		List<Produto> todosComNomeCategoria = produtoDao.buscarPorCategoria("VIDROS");
+		todosComNomeCategoria.forEach(ps -> System.out.println(ps.getDescricao()));
 		
-		List<Produto> todosComNomeCategoria = produtoDao.buscarPorCategoria("CELULARES");
-		todosComNomeCategoria.forEach(ps -> System.out.println(ps.getNome()));
-		
-		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Samsung M51");
-		System.out.println("Preço M51: " + precoDoProduto);
+		BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("RETROVISOR COROLLA D");
+		System.out.println("Preço do produto: " + precoDoProduto);
 	}
 
-	private static void CadastrarProduto() {
-		Categoria celulares = new Categoria("CELULARES");		
-		Produto m51 = new Produto("Samsung M51", "Excelente modelo com 7000 mAh de bateria.", new BigDecimal("1615.14"), celulares);
-		Produto a71 = new Produto("Samsung A71", "Modelo performátco com 4000 mAh de bateria.", new BigDecimal("1715.14"), celulares);
+	private static void inicializacaoEstoque() {
+		Categoria vidros = new Categoria("VIDROS");
+		Categoria carroceria = new Categoria("CARROCERIA");
+		Categoria lanternas = new Categoria("LANTERNAS");
+		
+		Produto retrovisorCorollaE = new Produto("RETROVISOR COROLLA E", "RETROVISOR COR BRANCO LADO ESQUERDO TOYOTA COROLA 21/21", new BigDecimal("800"), vidros);
+		Produto retrovisorCorollaD = new Produto("RETROVISOR COROLLA D", "RETROVISOR COR PRATA LADO DIREITO TOYOTA COROLA 21/21", new BigDecimal("810"), vidros);
+		Produto parabrisaRanger = new Produto("PARA-BRISA RANGER", "VIDRO PARA-BRISA FORD RANGER 21/21", new BigDecimal("3000"), vidros);
+		
+		Produto portaGol = new Produto("PORTA GOL", "PORTA DO MOTORISTA GOL 1.0 19/19", new BigDecimal("4000"), carroceria);
+		Produto paraChoqueGol = new Produto("PARA-CHOQUE GOL", "PARA-CHOQUE DIANTEIRO GOL VERMELHO 15/15", new BigDecimal("1200"), carroceria);
+		Produto paraChoqueFiesta = new Produto("PARA-CHOQUE FIESTA", "PARA-CHOQUE TRASEIRO FIESTA PRATA 20/20", new BigDecimal("2500"), carroceria);
+		
+		Produto lanternaGolD = new Produto("FAROL GOL D", "FAROL DIREITO GOL 14/14", new BigDecimal("400"), lanternas);
+		Produto lanternaGolE = new Produto("FAROL GOL E", "FAROL ESQUERDO GOL 14/14", new BigDecimal("400"), lanternas);
+		Produto lanternaF250E = new Produto("FAROL F250 E", "FAROL ESQUERDO FORD F250 20/20", new BigDecimal("2000"), lanternas);
 	
 		EntityManager em = JPAUtil.getEntityManager();
 		CategoriaDao categoriaDao = new CategoriaDao(em);
@@ -48,9 +60,21 @@ public class TesteCadastro {
 		
 		em.getTransaction().begin();//inicia a transação
 		
-		categoriaDao.cadastrar(celulares);
-		produtoDao.cadastrar(m51); //faz insert na tabela do banco
-		produtoDao.cadastrar(a71);
+		categoriaDao.cadastrar(vidros);
+		categoriaDao.cadastrar(carroceria);
+		categoriaDao.cadastrar(lanternas);
+		
+		produtoDao.cadastrar(retrovisorCorollaE); //faz insert na tabela do banco
+		produtoDao.cadastrar(retrovisorCorollaD);
+		produtoDao.cadastrar(parabrisaRanger);
+		
+		produtoDao.cadastrar(portaGol);
+		produtoDao.cadastrar(paraChoqueGol);
+		produtoDao.cadastrar(paraChoqueFiesta);
+		
+		produtoDao.cadastrar(lanternaGolD);
+		produtoDao.cadastrar(lanternaGolE);
+		produtoDao.cadastrar(lanternaF250E);
 		
 		em.getTransaction().commit();//commit na transação no banco de dados.
 		em.close();

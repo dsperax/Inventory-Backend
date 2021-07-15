@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojacar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logoLojacar">
+            <span class="menu-icon" onclick="openNav()">&#9776; </span>
+            <img src="img/Lojacar.png" alt="">
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Produtos</a>
+            <a href="cadastro.html">Cadastro</a>
+        </div>
+    </header>
+
+
+    <body>
+
+        <section class="secaoContato">
+            <div class="container">
+                <h2 class="tituloPadrao">
+                    Consulta Produto
+                </h2>
+
+                <form class="secaoContato-form">
+                    <fieldset>
+                        <legend class="secaoContato-form-legend">
+                            Consulte os produtos:
+                        </legend>
+
+                        <div class="contatoCampo contatoCampo--sucesso">
+                            <label for="nomeProduto">Nome: </label>
+                            <input type="text" id="nomeProduto" class="contatoCampo--validouFoi" placeholder="PARA-BRISA RANGER" required>
+                        </div>
+                        <div class="contatoCampo">
+                            <button class="secaoContato-form-cta btnPadrao" type="submit">Consultar Produto</button>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="container">
+                <h2 class="tituloPadrao">
+                    Consulta Categoria
+                </h2>
+
+                <form class="secaoContato-form">
+                    <fieldset>
+                        <legend class="secaoContato-form-legend">
+                            Consulte por Categoria:
+                        </legend>
+
+                        <div class="contatoCampo contatoCampo--sucesso">
+                            <label for="nomeCategoria">Nome: </label>
+                            <input type="text" id="nomeCategoria" class="contatoCampo--validouFoi" placeholder="VIDROS" required>
+                        </div>
+
+                        <div class="contatoCampo">
+                            <button class="secaoContato-form-cta btnPadrao" type="submit">Consultar Categoria</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+    </body>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
