@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +34,14 @@ public class CategoriaController {
 		return categoriaRepository.save(categoria);
 	}
 	
-//	@DeleteMapping
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public List<Categoria> delCategorias(@RequestBody Categoria categoria){
-//		return categoriaRepository.delete(categoria);
-//	}
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Categoria delCategorias(@PathVariable Long id){
+		Categoria categoria = new Categoria();
+		categoria = categoriaRepository.findById(id).orElse(null);
+		if (categoria != null){
+			categoriaRepository.delete(categoria);
+		}
+		return categoria;	
+	}
 }

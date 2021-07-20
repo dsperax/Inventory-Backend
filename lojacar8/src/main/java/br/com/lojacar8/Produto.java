@@ -1,7 +1,6 @@
 package br.com.lojacar8;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,16 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUTOS")
+@Table(name = "tb_produto")
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String nome;
-	private String descricao;
-	private BigDecimal preco;
-	private LocalDate dataCadastro = LocalDate.now();
+	private BigDecimal ID_PRODUTO;
+	private String NOME_PRODUTO;
+	private String DESCRICAO_PRODUTO;
+	private Double PRECO_PRODUTO;
 	@ManyToOne //muitos produtos tem uma categoria
 	private Categoria categoria;
 	
@@ -28,23 +26,16 @@ public class Produto {
 		
 	}
 
-	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
-		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
+	public Produto(String nome, String descricao, Double preco, Categoria categoria) {
+		this.NOME_PRODUTO = nome;
+		this.DESCRICAO_PRODUTO = descricao;
+		this.PRECO_PRODUTO = preco;
 		this.categoria = categoria;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public LocalDate getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(LocalDate dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	
+	
+	public BigDecimal getID_PRODUTO() {
+		return ID_PRODUTO;
 	}
 
 	public Categoria getCategoria() {
@@ -54,33 +45,29 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getNome() {
-		return nome;
+		return NOME_PRODUTO;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.NOME_PRODUTO = nome;
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return DESCRICAO_PRODUTO;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.DESCRICAO_PRODUTO = descricao;
 	}
 
-	public BigDecimal getPreco() {
-		return preco;
+	public Double getPreco() {
+		return PRECO_PRODUTO;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setPreco(Double preco) {
+		this.PRECO_PRODUTO = preco;
 	}
 
 
