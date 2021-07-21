@@ -23,11 +23,20 @@ public class Categoria {
 		return ID_CATEGORIA;
 	}
 
+	public void setID_CATEGORIA(int iD_CATEGORIA) {
+		ID_CATEGORIA = iD_CATEGORIA;
+	}
+
 	public String getNome() {
 		return NOME_CATEGORIA;
 	}
 
 	public void setNome(String nome) {
 		this.NOME_CATEGORIA = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "\n [Categoria = " + NOME_CATEGORIA + ", ID = " + ID_CATEGORIA + "]";
 	}
 }

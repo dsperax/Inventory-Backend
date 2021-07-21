@@ -27,9 +27,18 @@ public class Produto {
 		this.categoria = categoria;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return NOME_PRODUTO + ", DESCRICAO = " + DESCRICAO_PRODUTO + ", CATEGORIA = "
+				+ categoria ;
+	}
+
 	public int getID_PRODUTO() {
 		return ID_PRODUTO;
+	}
+	
+	public void setID_PRODUTO(int iD_PRODUTO) {
+		this.ID_PRODUTO = iD_PRODUTO;
 	}
 
 	public int getCategoria() {
