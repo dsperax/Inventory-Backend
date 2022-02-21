@@ -3,5 +3,5 @@
 ### Tecnologias utilizadas:
 
 - Java 8;
-- JBCD;
+- JDBC;
 - MySQL.
