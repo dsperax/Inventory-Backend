@@ -1,4 +1,4 @@
-# Java DAO com MySQL
+# Backend Inventory
 
 ### Tecnologias utilizadas:
 
